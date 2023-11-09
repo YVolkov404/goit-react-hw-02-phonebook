@@ -1,14 +1,13 @@
 import { nanoid } from 'nanoid';
 
-export const Contacts = ({ title, contacts }) => {
+export const Contacts = ({ contacts, name }) => {
   return (
-    <>
-      <h2>{title}</h2>
-      <ul>
-        {contacts.map(contact => (
-          <li key={nanoid()}>{contact}</li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {contacts.map(contact => (
+        <li key={nanoid()} name={name}>
+          {contact.name}
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,7 +1,6 @@
-export const Form = ({ title }) => {
+export const Form = ({ name }) => {
   return (
     <form>
-      <label>{title}</label>
       <input type="text" name="name" required />
       <button type="submit">Add contact</button>
     </form>
