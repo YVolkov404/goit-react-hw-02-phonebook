@@ -1,30 +1,57 @@
+import { nanoid } from 'nanoid';
 import { Component } from 'react';
 import { Form } from './Form';
-import { Contacts } from './Contacts';
+import { ContactList } from './ContactList';
+// import { Filter } from './Filter';
 
 export class App extends Component {
   state = {
     contacts: [],
+    filter: '',
     name: '',
+    number: '',
   };
 
-  onChangeInput = e => {
+  handleOnSubmit = e => {
     e.preventDefault();
-    this.setState(() => {
-      return { contacts: [this.state.name] };
+    const form = e.currentTarget;
+    form.reset();
+  };
+
+  handleOnChangeName = e => {
+    this.setState(newName => {
+      return {
+        name: newName,
+      };
     });
   };
 
+  handleOnChangeNumber = e => {
+    this.setState(newNumber => {
+      return {
+        number: newNumber,
+      };
+    });
+  };
+
+  // -------------------------------------------------------------
+
   render() {
-    const { contacts, name } = this.state;
+    const { contacts, name, number } = this.state;
+    const iD = nanoid(3);
 
     return (
       <>
         <h1>Name</h1>
-        <Form onChange={this.onChangeInput} />
+        <Form
+          handleOnSubmit={this.handleOnSubmit}
+          handleOnChangeName={this.handleOnChangeName}
+          handleOnChangeNumber={this.handleOnChangeNumber}
+        />
 
         <h2>Contacts</h2>
-        {contacts.length > 0 && <Contacts contacts={contacts} name={name} />}
+        {/* <Filter filter={filter} /> */}
+        <ContactList contacts={contacts} id={iD} name={name} number={number} />
       </>
     );
   }

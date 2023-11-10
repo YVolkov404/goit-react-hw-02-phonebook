@@ -1,8 +1,18 @@
-export const Form = ({ name }) => {
+export const Form = ({
+  handleOnSubmit,
+  handleOnChangeName,
+  handleOnChangeNumber,
+}) => {
   return (
-    <form>
-      <input type="text" name="name" required />
+    <Form onSubmit={handleOnSubmit}>
+      <input type="text" name="name" onChange={handleOnChangeName} required />
+      <input
+        type="tel"
+        name="number"
+        onChange={handleOnChangeNumber}
+        required
+      />
       <button type="submit">Add contact</button>
-    </form>
+    </Form>
   );
 };
