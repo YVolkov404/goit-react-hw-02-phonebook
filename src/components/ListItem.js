@@ -1,8 +1,9 @@
-export const ListItem = ({ name, number }) => {
+export const ListItem = () => {
   return (
     <ListItem>
-      <span>{name}</span>
-      <span>{number}</span>
+      <span></span>
+      <span></span>
+      <button>Delete</button>
     </ListItem>
   );
 };
