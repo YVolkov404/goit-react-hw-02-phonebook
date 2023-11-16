@@ -6,35 +6,46 @@ export class Form extends Component {
     number: '',
   };
 
+  handleOnChange = e => {
+    const { name, value } = e.currentTarget;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
   handleOnSubmit = e => {
     e.preventDefault();
 
-    let { name, number } = this.state;
+    this.props.onSubmit(this.state);
 
-    const form = e.currentTarget;
-    const input = e.currentTarget.elements;
-    console.log(input);
-    name = input.name.value;
-    number = input.number.value;
+    this.resetForm();
+  };
 
-    this.setState(() =>
-      this.props.onSubmit({
-        name: name,
-        number: number,
-      })
-    );
-    form.reset();
+  resetForm = () => {
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
     return (
-      <form
-        onSubmit={this.handleOnSubmit}
-        name={this.state.name}
-        number={this.state.number}
-      >
-        <input type="text" name="name" required />
-        <input type="tel" name="number" required />
+      <form onSubmit={this.handleOnSubmit}>
+        <input
+          type="text"
+          name="name"
+          value={this.state.name}
+          onChange={this.handleOnChange}
+          required
+        />
+        <input
+          type="tel"
+          name="number"
+          value={this.state.number}
+          onChange={this.handleOnChange}
+          required
+        />
         <button type="submit">Add contact</button>
       </form>
     );
