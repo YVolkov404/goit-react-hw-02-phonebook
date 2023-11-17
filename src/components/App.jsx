@@ -1,7 +1,9 @@
 import { Component } from 'react';
-import { Form } from './Form';
-import { ContactList } from './ContactList';
-// import { Filter } from './Filter';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
+
+import { Container, Title, SubTitle } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -10,20 +12,26 @@ export class App extends Component {
   };
 
   formSubmitHandler = data => {
-    this.setState({ contacts: [data] });
+    this.setState(state => {
+      return { contacts: [...state.contacts, data] };
+    });
   };
 
   render() {
     const { contacts } = this.state;
 
     return (
-      <div>
-        <h1>Name</h1>
-        <Form onSubmit={this.formSubmitHandler} />
+      <Container>
+        <Title>Phonebook</Title>
 
-        <h2>Contacts</h2>
+        <ContactForm onSubmit={this.formSubmitHandler} />
+
+        <SubTitle>Contacts</SubTitle>
+
+        <Filter />
+
         {contacts.length > 0 && <ContactList contacts={contacts} />}
-      </div>
+      </Container>
     );
   }
 }

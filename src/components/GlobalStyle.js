@@ -15,4 +15,34 @@ export const GlobalStyle = createGlobalStyle`
       font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
     }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      padding: 0;
+      outline-style: none;
+      outline-color: transparent;
+    }
+
+    h1,
+    h2,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ${
+      '' /* :focus {
+      outline: 0;
+    } */
+    }
+
 `;
