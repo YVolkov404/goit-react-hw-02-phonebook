@@ -29,9 +29,9 @@ export const Input = styled.input`
 
 export const SubmitBtn = styled.button`
   margin-top: 30px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  font-variant: all-small-caps;
+  text-transform: uppercase;
   padding: 8px;
   background-color: blanchedalmond;
   border: none;

@@ -17,8 +17,20 @@ export class App extends Component {
     });
   };
 
+  filterChangeHandler = contactName => {
+    console.log(contactName);
+    this.setState({ filter: contactName });
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+
+    const filteredContactName = contacts.filter(contactName => {
+      const hasContactName = contactName.name
+        .toLowerCase()
+        .includes(filter.toLowerCase());
+      return hasContactName;
+    });
 
     return (
       <Container>
@@ -28,9 +40,9 @@ export class App extends Component {
 
         <SubTitle>Contacts</SubTitle>
 
-        <Filter />
+        <Filter filter={filter} onChangeFilter={this.filterChangeHandler} />
 
-        {contacts.length > 0 && <ContactList contacts={contacts} />}
+        {contacts.length > 0 && <ContactList contacts={filteredContactName} />}
       </Container>
     );
   }

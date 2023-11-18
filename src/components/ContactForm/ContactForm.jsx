@@ -31,6 +31,8 @@ export class ContactForm extends Component {
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <Form onSubmit={this.handleOnSubmit}>
         <Label htmlFor="nameId">Name</Label>
@@ -38,7 +40,7 @@ export class ContactForm extends Component {
           id="nameId"
           type="text"
           name="name"
-          value={this.state.name}
+          value={name}
           onChange={this.handleOnChange}
           required
         />
@@ -47,7 +49,7 @@ export class ContactForm extends Component {
           id="numberId"
           type="tel"
           name="number"
-          value={this.state.number}
+          value={number}
           onChange={this.handleOnChange}
           required
         />
