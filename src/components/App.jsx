@@ -12,9 +12,19 @@ export class App extends Component {
   };
 
   formSubmitHandler = data => {
-    this.setState(state => {
-      return { contacts: [...state.contacts, data] };
-    });
+    const hasContactName = this.state.contacts.some(
+      contact => contact.name === data.name
+    );
+
+    if (hasContactName) {
+      alert(`${data.name} is already in contacts`);
+    } else {
+      this.setState(state => {
+        return {
+          contacts: [...state.contacts, data],
+        };
+      });
+    }
   };
 
   filterChangeHandler = contactName => {
