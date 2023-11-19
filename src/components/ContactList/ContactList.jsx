@@ -1,14 +1,16 @@
-import { uid } from 'uid';
 import { ListItem } from '../ListItem/ListItem';
 import { List } from './ContactList.styled';
 
 export const ContactList = ({ contacts, deleteContact }) => {
+  console.log(contacts);
+
   return (
     <List>
-      {contacts.map(({ name, number }) => {
+      {contacts.map(({ id, name, number }, index) => {
         return (
           <ListItem
-            key={uid(3)}
+            key={index}
+            id={id}
             name={name}
             number={number}
             deleteContact={deleteContact}

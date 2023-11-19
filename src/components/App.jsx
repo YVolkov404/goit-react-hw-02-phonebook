@@ -1,3 +1,4 @@
+import { uid } from 'uid';
 import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
@@ -21,7 +22,7 @@ export class App extends Component {
     } else {
       this.setState(state => {
         return {
-          contacts: [...state.contacts, data],
+          contacts: [...state.contacts, { id: uid(3), ...data }],
         };
       });
     }
@@ -35,21 +36,26 @@ export class App extends Component {
     this.setState(state => {
       return {
         contacts: state.contacts.filter(
-          contact => contact.number !== contactNumber
+          contact => contact.id !== contactNumber
         ),
       };
+    });
+  };
+
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contactName => {
+      const hasContactName = contactName.name
+        .toLowerCase()
+        .includes(filter.toLowerCase());
+      return hasContactName;
     });
   };
 
   render() {
     const { contacts, filter } = this.state;
 
-    const filteredContactName = contacts.filter(contactName => {
-      const hasContactName = contactName.name
-        .toLowerCase()
-        .includes(filter.toLowerCase());
-      return hasContactName;
-    });
+    const filteredContactName = this.getFilteredContacts();
 
     return (
       <Container>

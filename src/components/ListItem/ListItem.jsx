@@ -1,11 +1,11 @@
 import { Item, Name, Number, DeleteBtn, Icon } from './ListItem.styled';
 
-export const ListItem = ({ name, number, deleteContact }) => {
+export const ListItem = ({ id, name, number, deleteContact }) => {
   return (
     <Item>
       <Name>{name} :</Name>
       <Number>{number}</Number>
-      <DeleteBtn onClick={() => deleteContact(number)}>
+      <DeleteBtn onClick={() => deleteContact(id)}>
         <Icon size="19px" />
       </DeleteBtn>
     </Item>
