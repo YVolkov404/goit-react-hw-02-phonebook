@@ -13,7 +13,7 @@ export class App extends Component {
 
   formSubmitHandler = data => {
     const hasContactName = this.state.contacts.some(
-      contact => contact.name === data.name
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
     );
 
     if (hasContactName) {
