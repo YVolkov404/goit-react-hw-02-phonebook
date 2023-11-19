@@ -2,8 +2,6 @@ import { ListItem } from '../ListItem/ListItem';
 import { List } from './ContactList.styled';
 
 export const ContactList = ({ contacts, deleteContact }) => {
-  console.log(contacts);
-
   return (
     <List>
       {contacts.map(({ id, name, number }, index) => {
