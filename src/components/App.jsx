@@ -18,8 +18,17 @@ export class App extends Component {
   };
 
   filterChangeHandler = contactName => {
-    console.log(contactName);
     this.setState({ filter: contactName });
+  };
+
+  deleteContactName = contactNumber => {
+    this.setState(state => {
+      return {
+        contacts: state.contacts.filter(
+          contact => contact.number !== contactNumber
+        ),
+      };
+    });
   };
 
   render() {
@@ -42,7 +51,12 @@ export class App extends Component {
 
         <Filter filter={filter} onChangeFilter={this.filterChangeHandler} />
 
-        {contacts.length > 0 && <ContactList contacts={filteredContactName} />}
+        {contacts.length > 0 && (
+          <ContactList
+            contacts={filteredContactName}
+            deleteContact={this.deleteContactName}
+          />
+        )}
       </Container>
     );
   }
